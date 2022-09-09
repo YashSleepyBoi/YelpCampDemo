@@ -1,0 +1,41 @@
+<% layout('./boilerplate/boilerplate.ejs') %> 
+
+  <div id="map" style="width: 100%; height:500px"></div>
+
+    <h1>Campground</h1>
+
+    <div class="container m-0">
+        <div class="row">
+                <% for(let i of allcampground){ %>
+                    
+                    <div class=" col-12 offset-0 col-md-8  col-lg-8 offset-lg-2  "> 
+                        <div class="card mb-2" style="width: 100%;" >
+                            <div class="row g-0">
+                              <div class="col-md-4">
+                                
+                                  <img src="<%= i.image[0].url %>" class="img-fluid rounded-start" alt="">
+                                
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                  <h5 class="card-title"><%= i.title %></h5>
+                                  <p class="card-text"><%= i.description %></p> </p>
+                                  <a href="/campground/<%= i._id %> " class="btn btn-primary">Visit <%= i.title %></a>
+
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+            
+        <%} %> 
+        
+    </div>
+</div>
+    <a href="/campground/new">new camp</a>
+
+
+<script>
+  const campground = {features:<%- JSON.stringify(allcampground) %>}
+</script>
+<script src="/cluster.js"></script>

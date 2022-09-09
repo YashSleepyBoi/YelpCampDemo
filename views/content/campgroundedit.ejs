@@ -1,0 +1,60 @@
+<% layout('./boilerplate/boilerplate.ejs') %> 
+
+    <h1>Campground Editor</h1>
+
+    <form action="/campground/<%= campground._id%>?_method=patch" method="POST"  style="width:55%" novalidate class="validated-form" enctype="multipart/form-data">
+        <label for="title" class="form-label pt-3">Title</label>
+        <input type="text" id="title" name="title" placeholder="title" class="form-control mb-1" value="<%= campground.title %>" required>
+        <div class="valid-feedback">Looks Good!</div>
+        <div class="invalid-feedback">Enter a Title</div>
+
+        <label for="locations" class="form-label pt-3">Location</label>
+        <input type="text" id="location" name="location" placeholder="location" class="form-control mb-3"  value="<%= campground.location %>" required>
+        <div class="valid-feedback">Looks Good!</div>
+        <div class="invalid-feedback">Enter a Location</div>
+
+        <label for="price" class="form-label">Price</label>
+        <div class="input-group mb-3">
+            
+            <span class="input-group-text">$</span>
+            <input type="text" id="price" name='price' class="form-control" value="<%= campground.price %>" required>
+            <div class="valid-feedback">Looks Good!</div>
+            <div class="invalid-feedback">Enter a Price</div>
+        </div>
+
+        <label for="image" class="form-label ">Image</label>
+            
+            <div class="input-group">
+                <input type="file" class="form-control" id="inputGroupFile04 image" name='image' aria-describedby="inputGroupFileAddon04" aria-label="Upload" multiple>
+                 
+            </div>
+        <div class="valid-feedback">Looks Good!</div>
+        <div class="invalid-feedback">Enter a Image URL</div>
+
+        <label for="description" class="form-label">Description</label> 
+        <textarea name="description" placeholder="Description" id="description"  class="form-control" cols="30" rows="2" required ><%= campground.description %></textarea>
+        <div class="valid-feedback">Looks Good!</div>
+        <div class="invalid-feedback">Enter a Description</div>
+
+        <button class="btn btn-success mt-3">submit</button>
+    </form>
+
+    <h3>Delete Images</h3>
+    <form action="/campground/<%=campground._id%>/edit" method="POST">
+        <div class="card">
+            <div class="m-3">
+            <% count=0 %> 
+            <% for(let image of campground.image){ %> 
+                <% count++; %> 
+                <img src="<%=image.url%>" alt="" style="width:200px; height:150px">
+                <label for="delete-<%= count %>" class="form-label"> DELETE? </label>
+                <input type="checkbox" name="delete[]" id="delete-<%= count %>" value="<%= image.filename%> ">
+            <% } %>
+        </div> 
+        <div class=" card-body"><button class="btn btn-danger mt-5" >Delete</button></div>
+        </div>
+        
+        
+        
+    </form>
+
