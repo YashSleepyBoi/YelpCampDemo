@@ -103,7 +103,7 @@ app.use((err,req,res, next) => {
     if(!err.message)error.message='content not found'
     res.status(StatusCode).render('content/error',{error:err})
 })
-
-app.listen(3000,()=>{
-    console.log("Listening on port 3000");
+const port=process.env.PORT
+app.listen(port,()=>{
+    console.log("Listening on port");
 })
