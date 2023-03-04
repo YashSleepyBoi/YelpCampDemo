@@ -5,5 +5,5 @@ This project was part of a Web Development Bootcamp course.
 
 To run this code:
   1) Install Node Js
-  2) run the code " node index.js " in the terminal
+  2) run the code " node index.js "(in the directory that contains the index.js file) in the terminal
   
